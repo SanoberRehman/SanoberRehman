@@ -3,7 +3,7 @@ import math
 import os
 import random
 
-from pixel import NIGHT, MUTED, GOLD, CROP_CSS, crop
+from pixel import NIGHT, MUTED, GOLD, CROP_CSS, CROP_KINDS, crop
 
 OUT = os.path.join("assets", "header.svg")
 W, H = 830, 250
@@ -16,8 +16,6 @@ SWIRL_BLUES = ["#24407c", "#33569f", "#4f78c0", "#7fa3d8"]
 CREAM = "#e6ddb8"
 STAR_CORE = "#f7e7a0"
 STAR_HALO = "#e3b94c"
-CROPS = ["#6DA232", "#4B8DD4", "#BD8A1F", "#A66FC4"]
-
 rng = random.Random(20260722)
 
 EXTRA_CSS = """
@@ -60,7 +58,7 @@ def spiral(cx, cy, turns, r0, dr, squash):
             if key in seen or not (0 <= x < W and 8 <= y < HILL_Y - 12):
                 continue
             seen.add(key)
-            color = CREAM if rng.random() < 0.08 else SWIRL_BLUES[int(t * 2) % len(SWIRL_BLUES)]
+            color = CREAM if rng.random() < 0.12 else SWIRL_BLUES[int(t * 2) % len(SWIRL_BLUES)]
             out.append(flow_pixel(x, y, t / t_max, color))
     return "".join(out)
 
@@ -69,10 +67,10 @@ def waves():
     out = []
     for y0 in (38, 74, 112, 146):
         for x in range(0, W, CELL):
-            if rng.random() < 0.35:
+            if rng.random() < 0.28:
                 continue
             y = y0 + 9 * math.sin(x / 52 + y0 * 0.7)
-            color = CREAM if rng.random() < 0.04 else SWIRL_BLUES[int(x / CELL + y0) % len(SWIRL_BLUES)]
+            color = CREAM if rng.random() < 0.06 else SWIRL_BLUES[int(x / CELL + y0) % len(SWIRL_BLUES)]
             out.append(flow_pixel(x, y, (x / W + y0 / 200) % 1.0, color, opacity=0.75))
     return "".join(out)
 
@@ -148,8 +146,8 @@ def grass():
 
 def crops():
     out = []
-    for i, x in enumerate((150, 250, 590, 700)):
-        out.append(crop(x, GRASS_Y + 2, CROPS[i % len(CROPS)], delay_s=i * 1.9, px=4, sparkle=True))
+    for i, x in enumerate((148, 240, 596, 706)):
+        out.append(crop(x, GRASS_Y + 2, CROP_KINDS[i % len(CROP_KINDS)], delay_s=i * 1.9, px=3))
     return "".join(out)
 
 

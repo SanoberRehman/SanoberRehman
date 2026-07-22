@@ -3,7 +3,7 @@ import json
 import os
 import urllib.request
 
-from pixel import CARD, FG, GOLD, CROP_CSS, crop, shade
+from pixel import CARD, FG, GOLD, CROP_CSS, CROP_KINDS, crop, shade
 
 USER = os.environ.get("GITHUB_REPOSITORY_OWNER", "SanoberRehman")
 TOKEN = os.environ.get("GITHUB_TOKEN", "")
@@ -14,10 +14,10 @@ PALETTE = ["#6DA232", "#4B8DD4", "#BD8A1F", "#A66FC4", "#C4703F"]
 OTHER = "#77838f"
 MAX_SEGMENTS = 5
 
-W, H = 800, 158
+W, H = 800, 172
 FRAME = 8
 BAR_X, BAR_W = 24, W - 48
-BAR_Y, BAR_H = 76, 20
+BAR_Y, BAR_H = 90, 20
 SOIL_H = 7
 CROP_BASE = BAR_Y - 2
 
@@ -109,11 +109,12 @@ def build_svg(totals):
                 f'<text x="{x + 9:.1f}" y="{BAR_Y + 14}" fill="{CARD}" font-size="12" '
                 f'font-weight="700">{lang} {frac * 100:.1f}%</text>'
             )
-        if seg_w >= 26 and lang != "Other":
-            n = max(1, int(seg_w // 68))
+        if seg_w >= 34 and lang != "Other":
+            n = max(1, int(seg_w // 78))
             for k in range(n):
-                cx = x + (k + 0.5) * seg_w / n - 7
-                crops.append(crop(cx, CROP_BASE, color, delay_s=crop_i * 1.15, px=4, sparkle=True))
+                cx = x + (k + 0.5) * seg_w / n - 13
+                kind = CROP_KINDS[crop_i % len(CROP_KINDS)]
+                crops.append(crop(cx, CROP_BASE, kind, delay_s=crop_i * 1.15, px=3))
                 crop_i += 1
         legend.append(
             f'<rect x="{legend_x}" y="{H - 32}" width="9" height="7" fill="{color}"/>'
