@@ -1,22 +1,30 @@
-"""Generate a compact animated 'farm field' languages bar into dist/."""
+"""Generate the animated 'farm field' languages card (Stardew wooden frame) into dist/."""
 import json
 import os
 import urllib.request
 
-from pixel import BG, FG, ACCENT, CROP_CSS, crop
+from pixel import CARD, FG, GOLD, CROP_CSS, crop, shade
 
 USER = os.environ.get("GITHUB_REPOSITORY_OWNER", "SanoberRehman")
 TOKEN = os.environ.get("GITHUB_TOKEN", "")
 OUT = os.path.join("dist", "languages-field.svg")
 
-# Validated categorical order for the dark surface: green, blue, gold, purple, rust.
-PALETTE = ["#6FA344", "#4E93C9", "#B08428", "#8E5FA8", "#A9603A"]
-OTHER = "#6b7075"
+# Validated categorical order on the night-blue card surface.
+PALETTE = ["#6DA232", "#4B8DD4", "#BD8A1F", "#A66FC4", "#C4703F"]
+OTHER = "#77838f"
 MAX_SEGMENTS = 5
 
-W, H = 800, 128
-BAR_X, BAR_W, BAR_Y, BAR_H = 10, 780, 66, 26
-CROP_BASE = 64
+W, H = 800, 158
+FRAME = 8
+BAR_X, BAR_W = 24, W - 48
+BAR_Y, BAR_H = 76, 20
+SOIL_H = 7
+CROP_BASE = BAR_Y - 2
+
+STAR_CSS = """
+.star{animation:tw 4s infinite}
+@keyframes tw{0%,100%{opacity:.25}50%{opacity:.9}}
+"""
 
 
 def api(url):
@@ -43,6 +51,36 @@ def collect_languages():
     return totals
 
 
+def frame():
+    """Stardew-style pixel wooden frame."""
+    gold = "#D9A441"
+    parts = [
+        f'<rect width="{W}" height="{H}" fill="#2a1c0e"/>',
+        f'<rect x="2" y="2" width="{W - 4}" height="{H - 4}" fill="#8B5A2B"/>',
+        f'<rect x="5" y="5" width="{W - 10}" height="{H - 10}" fill="#5A3A1E"/>',
+        f'<rect x="{FRAME}" y="{FRAME}" width="{W - 2 * FRAME}" height="{H - 2 * FRAME}" fill="{CARD}"/>',
+    ]
+    for cx, cy in ((2, 2), (W - 8, 2), (2, H - 8), (W - 8, H - 8)):
+        parts.append(f'<rect x="{cx}" y="{cy}" width="6" height="6" fill="{gold}"/>')
+    return "".join(parts)
+
+
+def sky_stars():
+    spots = [(120, 25), (300, 20), (470, 28), (620, 22), (740, 30), (390, 38)]
+    return "".join(
+        f'<rect class="star" x="{x}" y="{y}" width="3" height="3" fill="#f7e7a0" '
+        f'style="animation-delay:{-i * 0.7:.2f}s"/>'
+        for i, (x, y) in enumerate(spots)
+    )
+
+
+def soil():
+    parts = [f'<rect x="{BAR_X}" y="{BAR_Y + BAR_H}" width="{BAR_W}" height="{SOIL_H}" fill="#4a3220"/>']
+    for gx in range(BAR_X, BAR_X + BAR_W, 14):
+        parts.append(f'<rect x="{gx + (gx // 14) % 7}" y="{BAR_Y + BAR_H + 2}" width="3" height="3" fill="#3a2718"/>')
+    return "".join(parts)
+
+
 def build_svg(totals):
     total = sum(totals.values()) or 1
     ranked = sorted(totals.items(), key=lambda kv: -kv[1])
@@ -60,23 +98,27 @@ def build_svg(totals):
         w = frac * BAR_W
         color = OTHER if lang == "Other" else PALETTE[i % len(PALETTE)]
         seg_w = max(w - 2, 1)
+        hi, lo = shade(color, 0.32), shade(color, -0.32)
         segments.append(
-            f'<rect x="{x:.1f}" y="{BAR_Y}" width="{seg_w:.1f}" height="{BAR_H}" fill="{color}"/>'
+            f'<rect x="{x:.1f}" y="{BAR_Y}" width="{seg_w:.1f}" height="4" fill="{hi}"/>'
+            f'<rect x="{x:.1f}" y="{BAR_Y + 4}" width="{seg_w:.1f}" height="{BAR_H - 8}" fill="{color}"/>'
+            f'<rect x="{x:.1f}" y="{BAR_Y + BAR_H - 4}" width="{seg_w:.1f}" height="4" fill="{lo}"/>'
         )
-        if seg_w >= 90:
+        if seg_w >= 100:
             segments.append(
-                f'<text x="{x + 8:.1f}" y="{BAR_Y + 17}" fill="{BG}" font-size="12" '
+                f'<text x="{x + 9:.1f}" y="{BAR_Y + 14}" fill="{CARD}" font-size="12" '
                 f'font-weight="700">{lang} {frac * 100:.1f}%</text>'
             )
         if seg_w >= 26 and lang != "Other":
-            n = max(1, int(seg_w // 64))
+            n = max(1, int(seg_w // 68))
             for k in range(n):
                 cx = x + (k + 0.5) * seg_w / n - 7
-                crops.append(crop(cx, CROP_BASE, color, delay_s=crop_i * 1.1))
+                crops.append(crop(cx, CROP_BASE, color, delay_s=crop_i * 1.15, px=4, sparkle=True))
                 crop_i += 1
         legend.append(
-            f'<rect x="{legend_x}" y="{H - 21}" width="9" height="9" fill="{color}"/>'
-            f'<text x="{legend_x + 14}" y="{H - 12}" fill="{FG}" font-size="11">{lang} {frac * 100:.1f}%</text>'
+            f'<rect x="{legend_x}" y="{H - 32}" width="9" height="7" fill="{color}"/>'
+            f'<rect x="{legend_x}" y="{H - 25}" width="9" height="2" fill="{shade(color, -0.32)}"/>'
+            f'<text x="{legend_x + 14}" y="{H - 24}" fill="{FG}" font-size="11">{lang} {frac * 100:.1f}%</text>'
         )
         legend_x += 14 + 8 + int(6.7 * (len(lang) + 7))
         x += w
@@ -84,10 +126,10 @@ def build_svg(totals):
     return (
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" '
         f'font-family="Courier New, monospace">'
-        f"<style>{CROP_CSS}</style>"
-        f'<rect width="{W}" height="{H}" fill="{BG}"/>'
-        f'<text x="{BAR_X}" y="20" fill="{ACCENT}" font-size="14" font-weight="700">Languages</text>'
-        + "".join(segments) + "".join(crops) + "".join(legend) + "</svg>"
+        f"<style>{CROP_CSS}{STAR_CSS}</style>"
+        + frame() + sky_stars()
+        + f'<text x="{BAR_X}" y="32" fill="{GOLD}" font-size="15" font-weight="700">Languages</text>'
+        + soil() + "".join(segments) + "".join(crops) + "".join(legend) + "</svg>"
     )
 
 
