@@ -16,6 +16,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Generate snake SVGs
         uses: Platane/snk/svg-only@v3
         with:
@@ -23,6 +26,11 @@ jobs:
           outputs: |
             dist/github-snake.svg?color_snake=#8B5CF6&color_dots=#ebedf0,#c6c9cc,#9aa0a6,#6b7075,#3c4043
             dist/github-snake-dark.svg?color_snake=#8B5CF6&color_dots=#161b22,#3c4043,#6b7075,#9aa0a6,#c9d1d9
+
+      - name: Generate languages donut
+        run: python scripts/lang_donut.py
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Push SVGs to output branch
         uses: crazy-max/ghaction-github-pages@v4

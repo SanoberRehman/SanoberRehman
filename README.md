@@ -85,8 +85,7 @@ Shipped 10+ production websites for B2B clients across the GCC; improved Lightho
 
 <div align="center">
 
-<img src="https://github-readme-stats.vercel.app/api?username=SanoberRehman&show_icons=true&hide_border=true&bg_color=0d1117&title_color=8B5CF6&icon_color=ffffff&text_color=c9d1d9&rank_icon=off" height="165" alt="GitHub Stats"/>
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=SanoberRehman&layout=pie&hide_border=true&bg_color=0d1117&title_color=8B5CF6&text_color=c9d1d9" height="165" alt="Languages"/>
+<img src="https://raw.githubusercontent.com/SanoberRehman/SanoberRehman/output/languages-donut.svg" alt="Languages"/>
 
 <br/><br/>
 
