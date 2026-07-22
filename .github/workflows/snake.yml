@@ -24,11 +24,11 @@ jobs:
         with:
           github_user_name: ${{ github.repository_owner }}
           outputs: |
-            dist/github-snake.svg?color_snake=#8B5CF6&color_dots=#ebedf0,#c6c9cc,#9aa0a6,#6b7075,#3c4043
-            dist/github-snake-dark.svg?color_snake=#8B5CF6&color_dots=#161b22,#3c4043,#6b7075,#9aa0a6,#c9d1d9
+            dist/github-snake.svg?color_snake=#48732c&color_dots=#ebedf0,#c6e48b,#7bc96f,#239a3b,#196127
+            dist/github-snake-dark.svg?color_snake=#A6D583&color_dots=#1a2e12,#2d4a1e,#48732c,#6FA344,#A6D583
 
-      - name: Generate languages donut
-        run: python scripts/lang_donut.py
+      - name: Generate languages field
+        run: python scripts/lang_field.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

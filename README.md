@@ -1,16 +1,10 @@
 <div align="center">
 
-# Sanober Rehman
-
-**AI/ML Engineer · LLM & GenAI Developer**
-
-Dubai, UAE
-
-<br/>
+<img src="https://raw.githubusercontent.com/SanoberRehman/SanoberRehman/main/assets/header.svg" alt="Sanober Rehman — AI/ML Engineer" width="100%"/>
 
 <a href="https://linkedin.com/in/sanoberrehman"><img src="https://img.shields.io/badge/LinkedIn-000000?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/></a>
 <a href="mailto:sanoberrehman2w@gmail.com"><img src="https://img.shields.io/badge/Email-000000?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"/></a>
-<a href="https://github.com/SanoberRehman/sanober-portfolio"><img src="https://img.shields.io/badge/Portfolio-8B5CF6?style=for-the-badge&logo=todoist&logoColor=white" alt="Portfolio"/></a>
+<a href="https://github.com/SanoberRehman/sanober-portfolio"><img src="https://img.shields.io/badge/Portfolio-A6D583?style=for-the-badge&logo=todoist&logoColor=black" alt="Portfolio"/></a>
 
 </div>
 
@@ -85,7 +79,7 @@ Shipped 10+ production websites for B2B clients across the GCC; improved Lightho
 
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/SanoberRehman/SanoberRehman/output/languages-donut.svg" alt="Languages"/>
+<img src="https://raw.githubusercontent.com/SanoberRehman/SanoberRehman/output/languages-field.svg" alt="Languages" width="100%"/>
 
 <br/><br/>
 
