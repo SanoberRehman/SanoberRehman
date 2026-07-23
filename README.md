@@ -10,7 +10,7 @@
 
 ---
 
-## About
+<div align="center"><img src="https://raw.githubusercontent.com/SanoberRehman/SanoberRehman/main/assets/sign-about.svg" alt="About" width="460"/></div>
 
 I build production LLM systems — agent tool servers, multimodal pipelines, and retrieval-augmented applications that ship to real users.
 
@@ -25,7 +25,7 @@ Claude API · Gemini API · OpenAI · Multimodal AI · Vector Databases · Fine-
 
 ---
 
-## Stack
+<div align="center"><img src="https://raw.githubusercontent.com/SanoberRehman/SanoberRehman/main/assets/sign-stack.svg" alt="Stack" width="460"/></div>
 
 <div align="center">
 
@@ -47,7 +47,7 @@ Claude API · Gemini API · OpenAI · Multimodal AI · Vector Databases · Fine-
 
 ---
 
-## Projects
+<div align="center"><img src="https://raw.githubusercontent.com/SanoberRehman/SanoberRehman/main/assets/sign-projects.svg" alt="Projects" width="460"/></div>
 
 **MCP Tool Server — WhatsApp AI Booking Assistant**
 `Python` `MCP` `AWS EC2` `LLM Agents`
@@ -63,7 +63,7 @@ Plain English to executable queries across PostgreSQL, MySQL, and MongoDB. Zero 
 
 ---
 
-## Experience
+<div align="center"><img src="https://raw.githubusercontent.com/SanoberRehman/SanoberRehman/main/assets/sign-experience.svg" alt="Experience" width="460"/></div>
 
 **AI Engineer Intern** — TravolGo, Dubai · *Jun 2026 – Present*
 MCP tool server for a production WhatsApp AI booking assistant. Python, AWS EC2, REST API integration, LLM function calling.
@@ -75,7 +75,7 @@ Shipped 10+ production websites for B2B clients across the GCC; improved Lightho
 
 ---
 
-## GitHub
+<div align="center"><img src="https://raw.githubusercontent.com/SanoberRehman/SanoberRehman/main/assets/sign-github.svg" alt="GitHub Stats" width="460"/></div>
 
 <div align="center">
 
@@ -83,7 +83,11 @@ Shipped 10+ production websites for B2B clients across the GCC; improved Lightho
 
 <br/><br/>
 
-<img src="https://raw.githubusercontent.com/SanoberRehman/SanoberRehman/main/assets/pacman.svg" alt="Pac-Man" width="100%"/>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/SanoberRehman/SanoberRehman/output/pacman-contribution-graph-dark.svg"/>
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/SanoberRehman/SanoberRehman/output/pacman-contribution-graph.svg"/>
+  <img src="https://raw.githubusercontent.com/SanoberRehman/SanoberRehman/output/pacman-contribution-graph-dark.svg" alt="Pac-Man eating my contributions" width="100%"/>
+</picture>
 
 </div>
 

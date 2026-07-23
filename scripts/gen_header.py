@@ -18,6 +18,8 @@ AURORA = ["#43e08a", "#2fd6b0", "#22c7d6", "#5aa8e6", "#8b7ff0", "#b06fd8"]
 rng = random.Random(20260723)
 
 EXTRA_CSS = """
+.drift{animation:drift 26s linear infinite}
+@keyframes drift{from{transform:translateX(0)}to{transform:translateX(-830px)}}
 .au{animation:shimmer 6s ease-in-out infinite}
 @keyframes shimmer{0%,100%{opacity:var(--o)}50%{opacity:calc(var(--o) * 1.9)}}
 .star{animation:tw 4.5s ease-in-out infinite}
@@ -43,13 +45,15 @@ def ramp(t):
     return lerp(AURORA[i], AURORA[i + 1], seg - i)
 
 
-def aurora():
-    """Three flowing vertical light curtains, brightest mid-height, fading at the ends."""
+def aurora_span(x0):
+    """One tile of aurora curtains, periodic over W so two tiles scroll seamlessly."""
     out = []
+    tau = 2 * math.pi
     ribbons = [(0.0, 78, 74), (2.2, 96, 92), (4.1, 66, 62)]  # phase, center_y, height
     for phase, cy, hgt in ribbons:
         for x in range(0, W, CELL):
-            sway = 20 * math.sin(x / 90 + phase) + 8 * math.sin(x / 34 + phase * 2)
+            # integer-cycle frequencies -> value at x == value at x+W (seamless loop)
+            sway = 20 * math.sin(tau * 2 * x / W + phase) + 8 * math.sin(tau * 5 * x / W + phase * 2)
             top = cy + sway - hgt / 2
             steps = int(hgt // CELL)
             for s in range(steps):
@@ -60,10 +64,15 @@ def aurora():
                 base = 0.16 + 0.42 * math.sin(math.pi * t)   # brightest mid
                 delay = (x / 130 + phase)
                 out.append(
-                    f'<rect class="au" x="{x}" y="{y:.0f}" width="{CELL}" height="{CELL}" '
+                    f'<rect class="au" x="{x0 + x}" y="{y:.0f}" width="{CELL}" height="{CELL}" '
                     f'fill="{ramp(1 - t)}" style="--o:{base:.2f};animation-delay:{-delay:.2f}s"/>'
                 )
     return "".join(out)
+
+
+def aurora():
+    """Two seamless tiles inside a drifting group so the lights flow across, looping."""
+    return f'<g class="drift">{aurora_span(0)}{aurora_span(W)}</g>'
 
 
 def stars():

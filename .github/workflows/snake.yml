@@ -1,4 +1,4 @@
-name: Generate languages field
+name: Generate arcade + languages graphs
 
 on:
   schedule:
@@ -14,13 +14,19 @@ permissions:
 jobs:
   generate:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Generate Pac-Man contribution graph
+        uses: abozanona/pacman-contribution-graph@main
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          games: "pacman"
+
       - name: Generate languages field
-        run: python scripts/lang_field.py
+        run: python3 scripts/lang_field.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
