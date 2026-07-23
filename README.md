@@ -83,11 +83,7 @@ Shipped 10+ production websites for B2B clients across the GCC; improved Lightho
 
 <br/><br/>
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/SanoberRehman/SanoberRehman/output/github-snake-dark.svg"/>
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/SanoberRehman/SanoberRehman/output/github-snake.svg"/>
-  <img src="https://raw.githubusercontent.com/SanoberRehman/SanoberRehman/output/github-snake-dark.svg" alt="Contribution graph"/>
-</picture>
+<img src="https://raw.githubusercontent.com/SanoberRehman/SanoberRehman/main/assets/pacman.svg" alt="Pac-Man" width="100%"/>
 
 </div>
 
