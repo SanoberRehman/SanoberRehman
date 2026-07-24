@@ -18,12 +18,18 @@ AURORA = ["#43e08a", "#2fd6b0", "#22c7d6", "#5aa8e6", "#8b7ff0", "#b06fd8"]
 rng = random.Random(20260723)
 
 EXTRA_CSS = """
-.drift{animation:drift 26s linear infinite}
+.drift{animation:drift 34s linear infinite}
 @keyframes drift{from{transform:translateX(0)}to{transform:translateX(-830px)}}
-.au{animation:shimmer 6s ease-in-out infinite}
-@keyframes shimmer{0%,100%{opacity:var(--o)}50%{opacity:calc(var(--o) * 1.9)}}
+.bobv{animation:bobv 11s ease-in-out infinite}
+@keyframes bobv{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.au{animation:shimmer 8s ease-in-out infinite}
+@keyframes shimmer{0%,100%{opacity:var(--o)}50%{opacity:calc(var(--o) * 1.45)}}
 .star{animation:tw 4.5s ease-in-out infinite}
 @keyframes tw{0%,100%{opacity:.2}50%{opacity:.95}}
+.moonw{animation:moonw 6.5s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes moonw{0%,100%{transform:translateX(-3px)}50%{transform:translateX(3px)}}
+.spark{animation:spark 3.2s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes spark{0%,100%{transform:scale(.45);opacity:.3}50%{transform:scale(1.1);opacity:1}}
 .fly{animation:fl 6s ease-in-out infinite}
 @keyframes fl{0%,100%{transform:translateY(0);opacity:.2}25%{opacity:1}50%{transform:translateY(-8px);opacity:.5}75%{opacity:.9}}
 .title{animation:fade 1.2s ease-out}
@@ -61,7 +67,7 @@ def aurora_span(x0):
                 if y < 6 or y > GRASS_Y - 30:
                     continue
                 t = s / steps                       # 0 top .. 1 bottom
-                base = 0.16 + 0.42 * math.sin(math.pi * t)   # brightest mid
+                base = 0.32 + 0.5 * math.sin(math.pi * t)   # more opaque, brightest mid
                 delay = (x / 130 + phase)
                 out.append(
                     f'<rect class="au" x="{x0 + x}" y="{y:.0f}" width="{CELL}" height="{CELL}" '
@@ -71,8 +77,9 @@ def aurora_span(x0):
 
 
 def aurora():
-    """Two seamless tiles inside a drifting group so the lights flow across, looping."""
-    return f'<g class="drift">{aurora_span(0)}{aurora_span(W)}</g>'
+    """Two seamless tiles inside a drifting group so the lights flow across, looping.
+    A nested vertical bob adds fluidity."""
+    return f'<g class="drift"><g class="bobv">{aurora_span(0)}{aurora_span(W)}</g></g>'
 
 
 def stars():
@@ -97,6 +104,21 @@ def moon():
             if (gx - cx - 6) ** 2 + (gy - cy + 2) ** 2 < 11 ** 2:
                 continue
             out.append(f'<rect x="{gx}" y="{gy}" width="4" height="4" fill="#f2e6c0"/>')
+    return f'<g class="moonw">{"".join(out)}</g>'
+
+
+def sparkles():
+    """A few 4-point sparkle stars that pulse."""
+    out = []
+    spots = [(150, 40), (470, 30), (640, 66), (300, 74)]
+    for i, (x, y) in enumerate(spots):
+        arm = ("#ffffff", "#cfe0ff")[i % 2]
+        s = (f'<g class="spark" style="animation-delay:{-i * 0.8:.2f}s">'
+             f'<rect x="{x - 1}" y="{y - 5}" width="2" height="10" fill="{arm}"/>'
+             f'<rect x="{x - 5}" y="{y - 1}" width="10" height="2" fill="{arm}"/>'
+             f'<rect x="{x - 1}" y="{y - 1}" width="2" height="2" fill="#ffffff"/>'
+             f"</g>")
+        out.append(s)
     return "".join(out)
 
 
@@ -158,7 +180,7 @@ def build():
         f'<stop offset="0" stop-color="{SKY_TOP}"/><stop offset="1" stop-color="{SKY_BOT}"/>'
         f"</linearGradient></defs>"
         f'<rect width="{W}" height="{H}" fill="url(#sky)"/>'
-        + aurora() + stars() + moon() + hills() + grass() + crops() + fireflies() + title()
+        + aurora() + stars() + sparkles() + moon() + hills() + grass() + crops() + fireflies() + title()
         + "</svg>"
     )
 

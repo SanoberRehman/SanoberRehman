@@ -8,7 +8,7 @@
 
 </div>
 
----
+<div align="center"><img src="https://raw.githubusercontent.com/SanoberRehman/SanoberRehman/main/assets/divider.svg" alt="" width="520"/></div>
 
 <div align="center"><img src="https://raw.githubusercontent.com/SanoberRehman/SanoberRehman/main/assets/sign-about.svg" alt="About" width="460"/></div>
 
@@ -23,7 +23,7 @@ LLM Agents · RAG · MCP · Function Calling · LangChain · LangGraph · Prompt
 Claude API · Gemini API · OpenAI · Multimodal AI · Vector Databases · Fine-tuning
 ```
 
----
+<div align="center"><img src="https://raw.githubusercontent.com/SanoberRehman/SanoberRehman/main/assets/divider.svg" alt="" width="520"/></div>
 
 <div align="center"><img src="https://raw.githubusercontent.com/SanoberRehman/SanoberRehman/main/assets/sign-stack.svg" alt="Stack" width="460"/></div>
 
@@ -45,7 +45,7 @@ Claude API · Gemini API · OpenAI · Multimodal AI · Vector Databases · Fine-
 
 </div>
 
----
+<div align="center"><img src="https://raw.githubusercontent.com/SanoberRehman/SanoberRehman/main/assets/divider.svg" alt="" width="520"/></div>
 
 <div align="center"><img src="https://raw.githubusercontent.com/SanoberRehman/SanoberRehman/main/assets/sign-projects.svg" alt="Projects" width="460"/></div>
 
@@ -61,7 +61,7 @@ Voice, text, and images in — LinkedIn-ready posts out. Multimodal pipeline wit
 `FastAPI` `LangChain` `Ollama`
 Plain English to executable queries across PostgreSQL, MySQL, and MongoDB. Zero SQL knowledge required.
 
----
+<div align="center"><img src="https://raw.githubusercontent.com/SanoberRehman/SanoberRehman/main/assets/divider.svg" alt="" width="520"/></div>
 
 <div align="center"><img src="https://raw.githubusercontent.com/SanoberRehman/SanoberRehman/main/assets/sign-experience.svg" alt="Experience" width="460"/></div>
 
@@ -73,7 +73,7 @@ Shipped 10+ production websites for B2B clients across the GCC; improved Lightho
 
 **B.E. Artificial Intelligence & Machine Learning** — GPA 8.7/10 · *2022 – 2026*
 
----
+<div align="center"><img src="https://raw.githubusercontent.com/SanoberRehman/SanoberRehman/main/assets/divider.svg" alt="" width="520"/></div>
 
 <div align="center"><img src="https://raw.githubusercontent.com/SanoberRehman/SanoberRehman/main/assets/sign-github.svg" alt="GitHub Stats" width="460"/></div>
 
@@ -91,7 +91,7 @@ Shipped 10+ production websites for B2B clients across the GCC; improved Lightho
 
 </div>
 
----
+<div align="center"><img src="https://raw.githubusercontent.com/SanoberRehman/SanoberRehman/main/assets/divider.svg" alt="" width="520"/></div>
 
 <div align="center">
 
