@@ -49,6 +49,18 @@ Claude API · Gemini API · OpenAI · Multimodal AI · Vector Databases · Fine-
 
 <div align="center"><img src="https://raw.githubusercontent.com/SanoberRehman/SanoberRehman/main/assets/sign-projects.svg" alt="Projects" width="460"/></div>
 
+**[cap-mcp-bridge](https://github.com/SanoberRehman/cap-mcp-bridge) — SAP CAP / OData v4 → MCP tools**
+`TypeScript` `MCP` `OData` `SAP CAP`
+Point it at any OData v4 service and its `$metadata` becomes MCP tools an LLM can call. Filters are validated against the schema before the network, so a wrong field returns the valid ones instead of a 400. Drafts, redaction and paging handled. On npm.
+
+**[any2mcp](https://github.com/SanoberRehman/any2mcp) — any Python module → MCP server, safely**
+`Python` `MCP` `Static Analysis`
+Every public function becomes a schematised tool from the type hints and docstrings already there, after a risk analysis that keeps shell, destructive-filesystem and eval-style functions off the model by default.
+
+**[Hierarchical GraphRAG](https://github.com/SanoberRehman/hierarchical-graphrag) — small-to-big retrieval + Neo4j knowledge graph**
+`FastAPI` `Neo4j` `Qdrant` `LangGraph` `Next.js`
+Parent–child chunking fused with N-hop graph traversal. Streamed, cited answers with a live subgraph inspector. A fake-provider mode runs the whole stack with zero API keys.
+
 **MCP Tool Server — WhatsApp AI Booking Assistant**
 `Python` `MCP` `AWS EC2` `LLM Agents`
 Seven production tools behind a live WhatsApp booking agent: destination resolution, live hotel rates, quote generation with booking handoff. Diagnosed and fixed a pricing bug that was inflating real customer quotes.
@@ -72,6 +84,8 @@ MCP tool server for a production WhatsApp AI booking assistant. Python, AWS EC2,
 Shipped 10+ production websites for B2B clients across the GCC; improved Lighthouse scores by 30+ points on average.
 
 **B.E. Artificial Intelligence & Machine Learning** — GPA 8.7/10 · *2022 – 2026*
+
+**SAP Certified – SAP Generative AI Developer** — SAP · *Aug 2026*
 
 <div align="center"><img src="https://raw.githubusercontent.com/SanoberRehman/SanoberRehman/main/assets/divider.svg" alt="" width="520"/></div>
 
