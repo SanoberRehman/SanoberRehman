@@ -77,8 +77,11 @@ Plain English to executable queries across PostgreSQL, MySQL, and MongoDB. Zero 
 
 <div align="center"><img src="https://raw.githubusercontent.com/SanoberRehman/SanoberRehman/main/assets/sign-experience.svg" alt="Experience" width="460"/></div>
 
-**AI Engineer Intern** — TravolGo, Dubai · *Jun 2026 – Present*
+**AI Transformation Engineer** — TravolGo, Dubai (Remote) · *Sep 2026 – Present*
 MCP tool server for a production WhatsApp AI booking assistant. Python, AWS EC2, REST API integration, LLM function calling.
+
+**AI Engineer Intern** — TravolGo, Dubai · *Jun 2026 – Sep 2026*
+Same team and system; converted to a long-term contract.
 
 **Web Developer** — Acube Development, Dubai · *Mar 2024 – Mar 2025*
 Shipped 10+ production websites for B2B clients across the GCC; improved Lighthouse scores by 30+ points on average.
